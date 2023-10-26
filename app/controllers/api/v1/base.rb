@@ -1,6 +1,15 @@
+require 'grape-swagger'
+require 'appsignal/integrations/grape'
+
 module API
   module V1
-    class Base < Grape::API
+    class Base < Grape::API::Instance
+      insert_before Grape::Middleware::Error, Appsignal::Grape::Middleware
+
+      version 'v1', using: :path
+      prefix :api
+      format :json
+
       mount API::V1::Users
 
       add_swagger_documentation(

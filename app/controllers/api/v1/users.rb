@@ -1,6 +1,6 @@
 module API
   module V1
-    class Users < Grape::API
+    class Users < Grape::API::Instance
       include API::V1::Defaults
 
       desc 'Create a user'
